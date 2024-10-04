@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTender - AI Tender Analysis</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a73e8, #4285f4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .login-box {
+            width: 100%;
+        }
+
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            transition: 0.3s ease;
+        }
+
+        .login-box input[type="text"]:focus,
+        .login-box input[type="password"]:focus {
+            border-color: #4285f4;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(66, 133, 244, 0.3);
+            outline: none;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .options a {
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: #1a73e8;
+            transition: color 0.3s;
+        }
+
+        .options a:hover {
+            color: #0047bb;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            width: 48%;
+        }
+
+        .login-btn {
+            background-color: #4285f4;
+            color: white;
+        }
+
+        .signup-btn {
+            background-color: #34a853;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px;
+            }
+
+            .btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Logo Section -->
+        <div class="logo">
+            <img src="logo.png" alt="CompTender Logo">
+        </div>
+
+        <!-- Heading Section -->
+        <h1>CompTender</h1>
+        <p class="tagline">AI based Tender analysis and review platform</p>
+
+        <!-- Login Form Section -->
+        <div class="login-box">
+            <form>
+                <input type="text" placeholder="Company Username" required>
+                <input type="password" placeholder="Password" required>
+                <div class="options">
+                    <a href="#">Forgot password?</a>
+                    <a href="#" class="signup-link">Sign up</a>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="btn login-btn">Log in</button>
+                    <button type="button" class="btn signup-btn">Sign up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

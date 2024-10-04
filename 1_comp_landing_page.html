@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard - A/G Construction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #1a73e8;
+            color: white;
+            padding: 20px;
+        }
+
+        .header .company-info {
+            font-size: 1.2rem;
+        }
+
+        .header .logout-btn {
+            font-size: 1rem;
+            background-color: #f44336;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .logout-btn:hover {
+            opacity: 0.9;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .filters input[type="text"],
+        .filters select {
+            padding: 10px;
+            width: 30%;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .project-table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        .project-table th,
+        .project-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .project-table th {
+            background-color: #4285f4;
+            color: white;
+            cursor: pointer;
+        }
+
+        .project-table th:hover {
+            background-color: #3367d6;
+        }
+
+        .project-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .status-green {
+            color: green;
+        }
+
+        .status-red {
+            color: red;
+        }
+
+        .status-review {
+            color: #ff9800;
+        }
+
+        .status-didnt-apply {
+            color: #607d8b;
+        }
+
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .new-project-btn {
+            background-color: #34a853;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .new-project-btn:hover {
+            background-color: #2c8e47;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="company-info">
+            Company Name: A/G Construction Company Pvt. Ltd.<br>
+            Location: Mumbai | Total Projects: 9
+        </div>
+        <button class="logout-btn" onclick="window.location.href='index.html'">Log Out</button>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filters">
+        <input type="text" placeholder="Filter by Project Name" id="nameFilter" onkeyup="filterProjects()">
+        <select id="uploadedByFilter" onchange="filterProjects()">
+            <option value="">Filter by Uploaded By</option>
+            <option value="Gak">Gak</option>
+            <option value="Ashar">Ashar</option>
+        </select>
+        <select id="statusFilter" onchange="filterProjects()">
+            <option value="">Filter by Status</option>
+            <option value="In Review">In Review</option>
+            <option value="Didn't Apply">Didn't Apply</option>
+            <option value="Applied and Won">Applied and Won</option>
+            <option value="Applied and Lost">Applied and Lost</option>
+        </select>
+    </div>
+
+    <!-- New Project Button -->
+    <a href="20_new_project.html" class="new-project-btn">New Project</a>
+
+    <!-- Project Table Section -->
+    <table class="project-table" id="projectTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Sr. No.</th>
+                <th onclick="sortTable(1)">Date Uploaded</th>
+                <th onclick="sortTable(2)">Project Name</th>
+                <th onclick="sortTable(3)">Uploaded by</th>
+                <th onclick="sortTable(4)">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2023-09-20</td>
+                <td><a href="2_selected_project_page.html">Construction of Hospital Building (Mother & Child Block – NSMIMS) at Palathara, Kollam</a></td>
+                <td>Gak</td>
+                <td class="status-green">Applied and Won</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2023-09-14</td>
+                <td>Execution of miscellaneous civil works related to setting up of Centre of excellence at NTSC, Okhla, New Delhi-110020</td>
+                <td>Gak</td>
+                <td class="status-green">Applied and Won</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>2023-08-20</td>
+                <td>Special Repairs of Ground floor area including mortuary unit and cleaning, painting of entire Academic block (External) and some of the miscellaneous work in laundry, A- Block etc, in ESIC Medical College & Hospital at K.K.Nagar, Chennai</td>
+                <td>Ashar</td>
+                <td class="status-review">In Review</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>2023-07-10</td>
+                <td>Construction of Multi-Purpose Centre (MPC) at various locations for district of Ganjam, Odisha</td>
+                <td>Gak</td>
+                <td class="status-green">Applied and Won</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>2023-05-30</td>
+                <td>Construction of Training Center, Substation, Meter Kiosk Civil works including steel for New Technology Centre at Sriperumbudur</td>
+                <td>Ashar</td>
+                <td class="status-red">Applied and Lost</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>2023-04-22</td>
+                <td>NOTICE INVITING TENDER FOR CONSTRUCTION OF DRAIN CHANNEL AT SRI GURU GOBIND SINGH COLLEGE OF COMMERCE, PITAMPURA, NEW DELHI</td>
+                <td>Gak</td>
+                <td class="status-review">In Review</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>2023-03-14</td>
+                <td>Construction of PAP tenements in UHPC at Lower Parel Division</td>
+                <td>Ashar</td>
+                <td class="status-red">Applied and Lost</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>2023-01-25</td>
+                <td>CONSTRUCTION OF CONCRETE PATHWAYS AND REPAIRING OF EXISTING CONCRETE PATHWAYS AT BRBNMPL, SALBONI</td>
+                <td>Gak</td>
+                <td class="status-didnt-apply">Didn't Apply</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>2022-12-10</td>
+                <td>CONSTRUCTION OF INTERNAL ROAD FROM KOTHALA TO KOTHALA TANDA, DIST. JALNA</td>
+                <td>Ashar</td>
+                <td class="status-green">Applied and Won</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Function to filter the table based on user input in the filters
+        function filterProjects() {
+            let nameFilter = document.getElementById('nameFilter').value.toLowerCase();
+            let uploadedByFilter = document.getElementById('uploadedByFilter').value.toLowerCase();
+            let statusFilter = document.getElementById('statusFilter').value.toLowerCase();
+            let table = document.getElementById("projectTable");
+            let rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                let projectName = rows[i].getElementsByTagName("td")[2].textContent.toLowerCase();
+                let uploadedBy = rows[i].getElementsByTagName("td")[3].textContent.toLowerCase();
+                let status = rows[i].getElementsByTagName("td")[4].textContent.toLowerCase();
+
+                let nameMatches = projectName.includes(nameFilter);
+                let uploadedByMatches = uploadedBy.includes(uploadedByFilter) || uploadedByFilter === "";
+                let statusMatches = status.includes(statusFilter) || statusFilter === "";
+
+                if (nameMatches && uploadedByMatches && statusMatches) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+
+        // Sorting functionality
+        function sortTable(n) {
+            const table = document.getElementById("projectTable");
+            let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            switching = true;
+            dir = "asc"; // Set the sorting direction to ascending
+
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                    if (dir === "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir === "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount === 0 && dir === "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

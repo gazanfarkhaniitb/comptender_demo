@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - Hospital Building Construction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%; /* Use full width of the page */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Header with CompTender Logo and Text */
+        .header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background-color: #4285f4; /* Blue background for the letterhead */
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .header img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .header h2 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: white;
+        }
+
+        /* Small back button on top-right */
+        .back-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #e33a2d;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .project-info {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9fafb;
+            border-radius: 10px;
+            border-left: 5px solid #4285f4;
+        }
+
+        .project-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .status-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dropdown select {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .save-btn {
+            padding: 8px 12px;
+            background-color: #34a853;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            background-color: #2c8e47;
+        }
+
+        .matching-index {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background-color: #e6f4ea;
+            border-left: 4px solid #34a853;
+            border-radius: 10px;
+        }
+
+        .matching-box {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #34a853;
+        }
+
+        /* Tab Styles */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            margin-right: 5px;
+            font-weight: bold;
+            flex-grow: 1;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab.active {
+            background-color: #4285f4;
+            color: white;
+        }
+
+        .tab:hover {
+            background-color: #ebebeb;
+        }
+
+        .tab-content {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            min-height: 500px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .columns {
+            display: flex;
+            width: 100%;
+            gap: 20px; /* Adds space between the two columns */
+        }
+
+        .left-column {
+            width: 50%;
+            padding-right: 10px;
+            position: relative;
+        }
+
+        .pdf-viewer {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pdf-viewer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .fullscreen-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .fullscreen-btn:hover {
+            background-color: #3367d6;
+        }
+
+        .right-column {
+            width: 50%;
+            padding-left: 10px;
+        }
+
+        .info-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border-left: 5px solid #4285f4;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .info-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #333;
+            width: 30%;
+        }
+
+        .value {
+            color: #666;
+        }
+
+        .work-description-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #555;
+        }
+
+        .important-dates, .financial-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .important-dates div, .financial-details div {
+            width: 30%;
+        }
+
+        /* Hover effect on work description items */
+        .work-description-list li {
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .work-description-list li:hover {
+            background-color: #4285f4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Letterhead (Logo and CompTender Text) -->
+        <div class="header">
+            <img src="logo.png" alt="Company Logo">
+            <h2>CompTender</h2>
+            <!-- Small Back button on top-right -->
+            <button class="back-btn" onclick="window.location.href='1_comp_landing_page.html'">Back</button>
+        </div>
+
+        <!-- Project Info -->
+        <div class="project-info">
+            <h1>Construction of Hospital Building (Mother & Child Block – NSMIMS)</h1>
+            <div class="project-details">
+                <div class="status-dropdown">
+                    <p>Date Uploaded: 2023-09-20</p>
+                    <p>Uploaded By: Gak</p>
+                    <label for="status">Status: </label>
+                    <select id="status">
+                        <option value="In Review">In Review</option>
+                        <option value="Didn't Apply">Didn't Apply</option>
+                        <option value="Applied and Won">Applied and Won</option>
+                        <option value="Applied and Lost">Applied and Lost</option>
+                    </select>
+                    <button class="save-btn">Save Update</button>
+                </div>
+                <div class="matching-index">
+                    <p>Profile Matching:</p>
+                    <div class="matching-box">84%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columns Section -->
+        <div class="columns">
+            <!-- Left Column - PDF Viewer -->
+            <div class="left-column" id="pdfContainer">
+                <div class="pdf-viewer" id="pdfViewer">
+                    <iframe src="CIVIL_AND_MEP_TENDER_DOCUMENT-_NS_HOSPITAL.pdf"></iframe>
+                </div>
+                <button class="fullscreen-btn" id="fullscreenBtn" onclick="toggleFullscreen()">Fullscreen</button>
+            </div>
+
+            <!-- Right Column - Tabs -->
+            <div class="right-column" id="tabContainer">
+                <!-- Tabs Navigation -->
+                <div class="tabs">
+                    <div class="tab active" id="tab-summary" onclick="showTab('summary')">Summary</div>
+                    <div class="tab" id="tab-eligibility" onclick="showTab('eligibility')">Eligibility</div>
+                    <div class="tab" id="tab-requirements" onclick="showTab('requirements')">Requirements</div>
+                    <div class="tab" id="tab-tendrchat" onclick="showTab('tendrchat')">TendrChat</div>
+                    <div class="tab" id="tab-similarity" onclick="showTab('similarity')">Similarity</div>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="summary" class="tab-content active">
+                    <h2>Summary</h2>
+
+                    <!-- Tender Information Section -->
+                    <h3>Tender Information</h3>
+                    <div class="info-container">
+                        <table class="info-table">
+                            <tr>
+                                <td class="label">Name</td>
+                                <td class="value">Proposed Hospital Project At Palathara, Kollam</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Client</td>
+                                <td class="value">NS MEMORIAL INSTITUTE OF MEDICAL SCIENCES</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Category</td>
+                                <td class="value">Construction</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Location</td>
+                                <td class="value">Palathara, Kollam, Kerala</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Work Description Section -->
+                    <h3>Work Description</h3>
+                    <div class="info-container">
+                        <ul class="work-description-list">
+                            <li>Construction of a hospital building including planning and execution of structural work.</li>
+                            <li>Installation of MEP (Mechanical, Electrical, and Plumbing) systems for functionality and efficiency.</li>
+                            <li>Designing patient rooms, consultation areas, and emergency services for healthcare facilities.</li>
+                            <li>Ensuring safety regulations compliance through proper construction techniques and materials.</li>
+                            <li>Implementing modern healthcare standards for better patient care and comfort.</li>
+                            <li>Incorporating energy-efficient solutions to reduce operational costs.</li>
+                            <li>Managing logistics of materials, equipment, and labor to maintain project timelines.</li>
+                            <li>Regular site inspections for quality assurance and adherence to architectural designs.</li>
+                            <li>Addressing site-specific challenges such as environmental factors and local regulations.</li>
+                            <li>Final touches including landscaping and external facilities.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Important Dates Section -->
+                    <h3>Important Dates</h3>
+                    <div class="important-dates info-container">
+                        <div>
+                            <p class="label">Tender Submission Date</p>
+                            <p class="value">15/11/2021</p>
+                        </div>
+                        <div>
+                            <p class="label">Tender Opening Date</p>
+                            <p class="value">15/11/2021</p>
+                        </div>
+                        <div>
+                            <p class="label">Project Duration</p>
+                            <p class="value">12 months</p>
+                        </div>
+                    </div>
+
+                    <!-- Financial Details Section -->
+                    <h3>Financial Details</h3>
+                    <div class="financial-details info-container">
+                        <div>
+                            <p class="label">Tender Cost</p>
+                            <p class="value">Rs. 5000/- (Five Thousand)</p>
+                        </div>
+                        <div>
+                            <p class="label">Earnest Money Deposit</p>
+                            <p class="value">Rs. 2000000/- (Twenty Lakhs)</p>
+                        </div>
+                        <div>
+                            <p class="label">Project Budget</p>
+                            <p class="value">Rs. 140000000/- (One Hundred Forty Crores)</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="eligibility" class="tab-content">
+    <h2>Eligibility</h2>
+
+    <!-- Sub-tabs for Technical and Financial -->
+    <div class="tabs">
+        <div class="sub-tab active" id="sub-tab-technical" onclick="showSubTab('technical')">Technical (<span id="tech-count">0</span>/5)</div>
+        <div class="sub-tab" id="sub-tab-financial" onclick="showSubTab('financial')">Financial (<span id="fin-count">0</span>/5)</div>
+    </div>
+
+    <!-- Technical Eligibility Section -->
+    <div id="technical" class="sub-tab-content active">
+        <h3>Technical Eligibility</h3>
+        <table class="eligibility-table">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Eligibility Point</th>
+                    <th>Satisfy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>The tenderer should have completed at least one single Civil & MEP Contract of Rs 15 Crores during the previous three financial years (completion certificate required).</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'tech')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'tech')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'tech')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>The bidder should have successfully completed at least one similar work costing more than 15 crores described in the NIT during the last three years.</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'tech')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'tech')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'tech')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>The Bidder must have relevant experience certificates attested by a Gazetted Officer or notarized to prove similar work experience.</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'tech')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'tech')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'tech')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>The Bidder should provide an attested copy of a valid registration certificate in Kerala PWD, CPWD, or other approved agencies.</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'tech')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'tech')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'tech')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>The Contractor shall employ Technical personnel for work supervision depending upon the cost of work.</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'tech')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'tech')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'tech')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Financial Eligibility Section -->
+    <div id="financial" class="sub-tab-content">
+        <h3>Financial Eligibility</h3>
+        <table class="eligibility-table">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Eligibility Point</th>
+                    <th>Satisfy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>The tenderer should have an annual turnover of Rs 10 crores in each of the previous three financial years.</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'fin')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'fin')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'fin')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>The bidder should be a profit-making firm and should not have made losses in the last two financial years out of the last five financial years.</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'fin')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'fin')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'fin')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>The bidder must provide a copy of a bank certificate to prove the available credit limit and evidence of liquid cash assets to verify the working capital requirement.</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'fin')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'fin')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'fin')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>The bidder should possess adequate working capital of more than 10% of the probable estimated cost of work for which they are bidding.</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'fin')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'fin')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'fin')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>The contractor must have a minimum turnover related to fire alarm system projects in previous years.</td>
+                    <td>
+                        <div class="satisfy-options">
+                            <button class="satisfy-btn" data-value="yes" onclick="selectOption(this, 'fin')">✔️</button>
+                            <button class="satisfy-btn" data-value="no" onclick="selectOption(this, 'fin')">❌</button>
+                            <button class="satisfy-btn" data-value="neutral" onclick="selectOption(this, 'fin')">⚪</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function showSubTab(tabId) {
+        // Hide all sub-tab content
+        document.querySelectorAll('.sub-tab-content').forEach(content => content.style.display = 'none');
+        // Remove active class from all sub-tabs
+        document.querySelectorAll('.sub-tab').forEach(tab => tab.classList.remove('active'));
+        // Show the selected sub-tab content and activate the selected tab
+        document.getElementById(tabId).style.display = 'block';
+        document.getElementById(`sub-tab-${tabId}`).classList.add('active');
+    }
+
+    function selectOption(button, type) {
+        // Clear previous selection
+        const siblings = button.parentNode.querySelectorAll('.satisfy-btn');
+        siblings.forEach(sib => sib.classList.remove('selected'));
+
+        // Mark selected option
+        button.classList.add('selected');
+        
+        // Update the count of "Yes" selections
+        updateCount(type);
+    }
+
+    function updateCount(type) {
+        const buttons = document.querySelectorAll(`#${type} .satisfy-btn.selected`);
+        let yesCount = 0;
+        buttons.forEach(btn => {
+            if (btn.getAttribute('data-value') === 'yes') yesCount++;
+        });
+        const totalPoints = (type === 'tech') ? 5 : 5; // Change according to actual total points
+        document.getElementById(`${type}-count`).innerText = yesCount;
+    }
+
+    // Initialize: show technical content first
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById('technical').style.display = 'block';
+    });
+</script>
+
+<style>
+    /* Styling for the sub-tabs */
+    .tabs {
+        display: flex;
+        border-bottom: 2px solid #ddd;
+        margin-bottom: 20px;
+    }
+
+    .sub-tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        border-bottom: none;
+        margin-right: 5px;
+        font-weight: bold;
+        flex-grow: 1;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .sub-tab.active {
+        background-color: #4285f4;
+        color: white;
+    }
+
+    .sub-tab:hover {
+        background-color: #ebebeb;
+    }
+
+    /* Styling for the eligibility table */
+    .eligibility-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .eligibility-table th, .eligibility-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .satisfy-options {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .satisfy-btn {
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .satisfy-btn:hover {
+        background-color: #ddd;
+    }
+
+    .satisfy-btn.selected {
+        background-color: #4285f4;
+        color: white;
+    }
+
+    /* Ensure only one sub-tab is shown at a time */
+    .sub-tab-content {
+        display: none;
+    }
+
+    .sub-tab-content.active {
+        display: block;
+    }
+</style>
+
+               <div id="requirements" class="tab-content">
+    <h2>Requirements</h2>
+    <div class="info-container">
+        <ul class="requirements-list">
+            <li>The contractor shall clear the site of all rubbish, remove all grass and low vegetation, remove all bush wood, trees, stumps of trees, and other vegetation only after consultation with the Field Engineer as to which bushes and trees shall be saved.</li>
+            <li>Competitive Sealed item-rate tenders are invited for the construction of hospital building.</li>
+            <li>The bid security in the amount of ₹ 20,00,000 is required.</li>
+            <li>Completion of the work is expected in one year (365 days).</li>
+            <li>The last date and time of receipt of Tender is 15th November, 2021 (11 am).</li>
+            <li>The date of opening of the Technical Bid is 15th November, 2021 (2 pm).</li>
+            <li>The contractor will need to submit various documents including completion certificates and audited balance sheets.</li>
+            <li>The Bidder shall bear all costs associated with the preparation & submission of its bid and site visits.</li>
+            <li>The Bidder is advised to visit and examine the Site of Works and its surroundings prior to submitting the bids.</li>
+            <li>The bid submitted by the Bidder shall comprise bid security, duly filled-complete bid document, registration certificate, experience certificates, and priced Bill of Quantities.</li>
+            <li>Brand name or specifications of materials used must comply with relevant standards.</li>
+            <li>The Bidder must submit a duly filled and signed pre-qualification information in the section-VI of the bid document.</li>
+            <li>The Bidder must attach the scanned copy of the recent income tax return statement filed with the appropriate Income Tax authorities.</li>
+            <li>If the bid is submitted as a joint venture/consortium, a copy of the Memorandum of understanding and power of attorney in the name of the lead partner must be submitted.</li>
+            <li>The Bidder must provide necessary details for signing of the contract and submit performance guarantees.</li>
+        </ul>
+    </div>
+</div>
+
+                <div id="tendrchat" class="tab-content">
+    <h2>TendrChat</h2>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <!-- Tenderer Message -->
+        <div class="chat-bubble tenderer">
+            Can you provide details about the hospital construction project in Palathara, Kollam?
+        </div>
+
+        <!-- AI Response -->
+        <div class="chat-bubble ai">
+            Sure! The project is titled "Proposed Hospital Project at Palathara, Kollam" for the NS Memorial Institute of Medical Sciences. The scope includes construction, installation of MEP systems, and compliance with modern healthcare standards.
+        </div>
+        <div class="reference">Page No. 7</div>
+
+        <!-- Tenderer Message -->
+        <div class="chat-bubble tenderer">
+            What is the project budget for this tender?
+        </div>
+
+        <!-- AI Response -->
+        <div class="chat-bubble ai">
+            The total project budget is Rs. 140,00,00,000 (One Hundred Forty Crores).
+        </div>
+        <div class="reference">Page No. 9</div>
+
+        <!-- Tenderer Message -->
+        <div class="chat-bubble tenderer">
+            When is the submission deadline for the tender?
+        </div>
+
+        <!-- AI Response -->
+        <div class="chat-bubble ai">
+            The submission deadline is on 15th November 2021. Make sure to submit before 11:00 AM!
+        </div>
+        <div class="reference">Page No. 10</div>
+
+        <!-- Tenderer Message -->
+        <div class="chat-bubble tenderer">
+            What documents do I need to submit with my bid?
+        </div>
+
+        <!-- AI Response -->
+        <div class="chat-bubble ai">
+            You will need to submit financial statements, project completion certificates, and a filled-out pre-qualification form. Additionally, an Earnest Money Deposit of Rs. 20,00,000 (Twenty Lakhs) is required.
+        </div>
+        <div class="reference">Page No. 12</div>
+
+        <!-- Tenderer Message -->
+        <div class="chat-bubble tenderer">
+            Can you tell me what type of work is included in this tender?
+        </div>
+
+        <!-- AI Response -->
+        <div class="chat-bubble ai">
+            The work includes demolition of existing structures, excavation, construction of the Mother & Child Block, installation of MEP systems, and interior works like partitioning, flooring, and painting.
+        </div>
+        <div class="reference">Page No. 15</div>
+    </div>
+
+    <!-- Chat Input Box -->
+    <div class="chat-input">
+        <input type="text" placeholder="Type your message here...">
+        <button>Send</button>
+    </div>
+</div>
+
+<style>
+    /* Styling for chat */
+    .chat-container {
+        max-width: 100%;
+        height: 400px;
+        overflow-y: auto;
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-bubble {
+        padding: 10px 15px;
+        margin: 10px 0;
+        border-radius: 20px;
+        max-width: 80%;
+        position: relative;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .tenderer {
+        background-color: #e1f5fe;
+        align-self: flex-start;
+        margin-left: 10px;
+    }
+
+    .ai {
+        background-color: #c8e6c9;
+        align-self: flex-end;
+        margin-right: 10px;
+    }
+
+    .reference {
+        font-size: 12px;
+        color: #888;
+        margin-top: -5px;
+        margin-left: 15px;
+    }
+
+    .chat-input {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .chat-input input {
+        flex-grow: 1;
+        padding: 10px;
+        border-radius: 20px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+    }
+
+    .chat-input button {
+        padding: 10px 20px;
+        background-color: #4285f4;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    .chat-input button:hover {
+        background-color: #3367d6;
+    }
+</style>
+
+                <div id="similarity" class="tab-content">
+    <h2>Project Similarity</h2>
+
+    <!-- Interactive Table for Similarity -->
+    <table id="similarity-table" class="similarity-table">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Sr. No.</th>
+                <th onclick="sortTable(1)">Date Uploaded</th>
+                <th onclick="sortTable(2)">Project Name</th>
+                <th onclick="sortTable(3)">Uploaded By</th>
+                <th onclick="sortTable(4)">Status</th>
+                <th onclick="sortTable(5)">% Similarity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2023-09-14</td>
+                <td>Execution of miscellaneous civil works related to setting up of Centre of excellence at NTSC, Okhla, New Delhi-110020</td>
+                <td>Gak</td>
+                <td class="status-green">Applied and Won</td>
+                <td>78%</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2023-08-20</td>
+                <td>Special Repairs of Ground floor area including mortuary unit and cleaning, painting of entire Academic block (External) and some of the miscellaneous work in laundry, A- Block etc, in ESIC Medical College & Hospital at K.K.Nagar, Chennai</td>
+                <td>Ashar</td>
+                <td class="status-review">In Review</td>
+                <td>62%</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>2023-07-10</td>
+                <td>Construction of Multi-Purpose Centre (MPC) at various locations for district of Ganjam, Odisha</td>
+                <td>Gak</td>
+                <td class="status-green">Applied and Won</td>
+                <td>90%</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>2023-05-30</td>
+                <td>Construction of Training Center, Substation, Meter Kiosk Civil works including steel for New Technology Centre at Sriperumbudur</td>
+                <td>Ashar</td>
+                <td class="status-red">Applied and Lost</td>
+                <td>58%</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>2023-04-22</td>
+                <td>NOTICE INVITING TENDER FOR CONSTRUCTION OF DRAIN CHANNEL AT SRI GURU GOBIND SINGH COLLEGE OF COMMERCE, PITAMPURA, NEW DELHI</td>
+                <td>Gak</td>
+                <td class="status-review">In Review</td>
+                <td>70%</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>2023-03-14</td>
+                <td>Construction of PAP tenements in UHPC at Lower Parel Division</td>
+                <td>Ashar</td>
+                <td class="status-red">Applied and Lost</td>
+                <td>49%</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>2023-01-25</td>
+                <td>CONSTRUCTION OF CONCRETE PATHWAYS AND REPAIRING OF EXISTING CONCRETE PATHWAYS AT BRBNMPL, SALBONI</td>
+                <td>Gak</td>
+                <td class="status-didnt-apply">Didn't Apply</td>
+                <td>55%</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>2022-12-10</td>
+                <td>CONSTRUCTION OF INTERNAL ROAD FROM KOTHALA TO KOTHALA TANDA, DIST. JALNA</td>
+                <td>Ashar</td>
+                <td class="status-green">Applied and Won</td>
+                <td>87%</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Function to sort the table based on column index
+    function sortTable(columnIndex) {
+        const table = document.getElementById("similarity-table");
+        const rows = Array.from(table.rows).slice(1); // Skip the header row
+        const isAscending = table.getAttribute("data-sort-order") === "asc";
+        
+        rows.sort((rowA, rowB) => {
+            const cellA = rowA.cells[columnIndex].textContent.trim();
+            const cellB = rowB.cells[columnIndex].textContent.trim();
+            
+            if (columnIndex === 5) { // Sort % Similarity as numbers
+                return isAscending ? cellA.replace('%', '') - cellB.replace('%', '') : cellB.replace('%', '') - cellA.replace('%', '');
+            } else { // Sort other columns alphabetically
+                return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+            }
+        });
+        
+        rows.forEach(row => table.appendChild(row)); // Re-append rows in the sorted order
+        table.setAttribute("data-sort-order", isAscending ? "desc" : "asc");
+    }
+</script>
+
+<style>
+    /* Styling for the table */
+    .similarity-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .similarity-table th, .similarity-table td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .similarity-table th {
+        background-color: #f4f4f4;
+        cursor: pointer;
+    }
+
+    .status-green {
+        color: green;
+        font-weight: bold;
+    }
+
+    .status-red {
+        color: red;
+        font-weight: bold;
+    }
+
+    .status-review {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .status-didnt-apply {
+        color: grey;
+        font-weight: bold;
+    }
+</style>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isFullscreen = false;
+
+        function showTab(tabId) {
+            // Hide all tab content
+            const tabsContent = document.querySelectorAll('.tab-content');
+            tabsContent.forEach(content => content.classList.remove('active'));
+
+            // Remove 'active' class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content and activate the clicked tab
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+        }
+
+        function toggleFullscreen() {
+            const pdfContainer = document.getElementById('pdfContainer');
+            const tabContainer = document.getElementById('tabContainer');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+            if (!isFullscreen) {
+                pdfContainer.style.width = "100%";
+                pdfContainer.style.transition = "width 0.5s ease";
+                tabContainer.style.display = "none";
+                fullscreenBtn.innerText = "Exit Fullscreen";
+            } else {
+                pdfContainer.style.width = "50%";
+                tabContainer.style.display = "block";
+                fullscreenBtn.innerText = "Fullscreen";
+            }
+
+            isFullscreen = !isFullscreen;
+        }
+    </script>
+
+</body>
+</html>
